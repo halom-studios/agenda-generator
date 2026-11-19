@@ -20,7 +20,14 @@ echo "==> Gerando o aplicativo macOS (.app) via Flet/PyInstaller..."
 
 echo "==> Gerando instalador .dmg (Drag-and-Drop para /Applications)..."
 STAGING_DIR="dist/dmg_staging"
-rm -rf "$STAGING_DIR" dist/GeradorAgenda-Instalador.dmg
+MACHINE_ARCH="${MACOS_ARCH:-$(uname -m)}"
+case "$MACHINE_ARCH" in
+    arm64|aarch64|Apple-Silicon) INSTALLER_ARCH="Apple-Silicon" ;;
+    x86_64|x64|Intel) INSTALLER_ARCH="Intel" ;;
+    *) echo "Arquitetura macOS não reconhecida: $MACHINE_ARCH" >&2; exit 1 ;;
+esac
+INSTALLER_PATH="dist/GeradorAgenda-Instalador-macOS-${INSTALLER_ARCH}.dmg"
+rm -rf "$STAGING_DIR" "$INSTALLER_PATH"
 mkdir -p "$STAGING_DIR"
 cp -R dist/GeradorAgenda.app "$STAGING_DIR/"
 ln -s /Applications "$STAGING_DIR/Applications"
@@ -33,10 +40,10 @@ hdiutil create \
     -ov \
     -format UDZO \
     -fs HFS+ \
-    dist/GeradorAgenda-Instalador.dmg
+    "$INSTALLER_PATH"
 
 rm -rf "$STAGING_DIR"
 
 echo "==> Concluído com sucesso!"
 echo "    App:        dist/GeradorAgenda.app"
-echo "    Instalador: dist/GeradorAgenda-Instalador.dmg"
+echo "    Instalador: $INSTALLER_PATH"
