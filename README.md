@@ -66,7 +66,9 @@ O script cria o `.app` e uma imagem `.dmg` em `dist/`.
 
 ## GitHub Actions
 
-O workflow em `.github/workflows/windows-installer.yml` compila o executável Windows e o instalador Inno Setup em um runner Windows. Ao enviar uma tag `v*` (por exemplo `v1.0.0`), os artefatos são anexados a um GitHub Release; execuções manuais também ficam disponíveis na página da execução.
+O workflow `.github/workflows/windows-installer.yml` roda em pushes para `main`, pull requests para `main` e também pode ser iniciado manualmente pela aba **Actions**. Cada execução bem-sucedida gera o instalador Inno Setup e disponibiliza os arquivos em **Artifacts** por 14 dias.
+
+Para publicar o instalador em um GitHub Release, crie e envie uma tag começando com `v`, por exemplo `v1.0.0`. Nessa execução, o instalador também será anexado ao Release. O workflow usa as permissões padrão `GITHUB_TOKEN` declaradas no próprio arquivo; nenhum secret adicional é necessário.
 
 ## Estrutura
 
