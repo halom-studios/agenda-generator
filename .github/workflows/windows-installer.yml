@@ -35,8 +35,10 @@ jobs:
       - name: Work around Flet CLI Windows binary-open bug
         shell: pwsh
         run: |
-          $moduleDir = python -c "import flet_cli, pathlib; print(pathlib.Path(flet_cli.__file__).parent)"
-          $sourcePath = Join-Path $moduleDir '__pyinstaller/win_utils.py'
+          $sourcePath = python -c "import importlib.util, pathlib; spec = importlib.util.find_spec('flet_cli.__pyinstaller.win_utils'); print(pathlib.Path(spec.origin) if spec and spec.origin else '')"
+          if (-not $sourcePath -or -not (Test-Path $sourcePath)) {
+            throw 'Could not locate flet_cli.__pyinstaller.win_utils in the installed Flet CLI.'
+          }
           $source = Get-Content $sourcePath -Raw
           $buggy = 'open(exe_path, "ab", encoding="utf-8")'
           if (-not $source.Contains($buggy)) {
