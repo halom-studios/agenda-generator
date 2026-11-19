@@ -66,7 +66,7 @@ O script cria o `.app` e uma imagem `.dmg` em `dist/`.
 
 ## GitHub Actions
 
-O workflow `.github/workflows/windows-installer.yml` roda em pushes para `main`, pull requests para `main` e também pode ser iniciado manualmente pela aba **Actions**. Cada execução bem-sucedida gera o instalador Inno Setup e disponibiliza os arquivos em **Artifacts** por 14 dias.
+O workflow `.github/workflows/windows-installer.yml` roda em pushes para `main`, pull requests para `main` e também pode ser iniciado manualmente pela aba **Actions**. Cada execução bem-sucedida gera o instalador Inno Setup e disponibiliza os arquivos em **Artifacts** por 14 dias. O workflow aplica uma correção temporária e verificada para um bug do Flet CLI 1.1.2 ao atualizar metadados do executável no Windows.
 
 Para publicar o instalador em um GitHub Release, crie e envie uma tag começando com `v`, por exemplo `v1.0.0`. Nessa execução, o instalador também será anexado ao Release. O workflow usa as permissões padrão `GITHUB_TOKEN` declaradas no próprio arquivo; nenhum secret adicional é necessário.
 
