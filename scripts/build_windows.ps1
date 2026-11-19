@@ -21,6 +21,6 @@ pip install -r requirements.txt
 pip install pyinstaller
 
 Write-Host "==> [3/3] Gerando o executavel standalone com Flet/PyInstaller..." -ForegroundColor Cyan
-flet pack --name "GeradorAgenda" --hidden-import odfdo --onedir -y scripts\gui_agenda.py
+flet pack --name "GeradorAgenda" --hidden-import odfdo --onedir --product-version 1.0.0 --file-version 1.0.0.0 -y scripts\gui_agenda.py
 
 Write-Host "==> Sucesso! Executavel disponivel em: dist\GeradorAgenda\GeradorAgenda.exe" -ForegroundColor Green

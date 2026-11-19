@@ -1,5 +1,7 @@
 # Gerador de Cadernos e Agendas
 
+Versão atual: **1.0.0** (`v1.0.0`).
+
 Aplicativo desktop em Python para gerar agendas e cadernos em formato ODG (LibreOffice Draw), usando um template `.odg` e, opcionalmente, arquivos Markdown com versículos.
 
 ## Recursos

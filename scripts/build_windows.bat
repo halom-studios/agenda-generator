@@ -27,7 +27,7 @@ pip install -r requirements.txt
 pip install pyinstaller
 
 echo [3/3] Compilando executavel standalone (.exe)...
-flet pack --name "GeradorAgenda" --hidden-import odfdo --onedir -y scripts\gui_agenda.py
+flet pack --name "GeradorAgenda" --hidden-import odfdo --onedir --product-version 1.0.0 --file-version 1.0.0.0 -y scripts\gui_agenda.py
 
 echo.
 echo ====================================================

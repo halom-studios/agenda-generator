@@ -15,6 +15,7 @@ echo "==> Gerando o aplicativo macOS (.app) via Flet/PyInstaller..."
 ./.venv/bin/flet pack \
     --name "GeradorAgenda" \
     --hidden-import odfdo \
+    --product-version "${APP_VERSION:-1.0.0}" \
     -y \
     scripts/gui_agenda.py
 

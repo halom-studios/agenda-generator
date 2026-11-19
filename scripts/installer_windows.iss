@@ -1,6 +1,6 @@
 ; Script do Inno Setup para Gerador de Agenda
 #define MyAppName "Gerador de Agenda"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.0.0"
 #define MyAppPublisher "vidaLog"
 #define MyAppDistDir "..\dist\GeradorAgenda"
 #define MyAppExeName "GeradorAgenda.exe"
